@@ -26,6 +26,10 @@ function SignUp() {
 
     }
 
+    const handleSignUp = () => {
+        dispatch(signUpInitiate())
+    }
+
     const handleSubmit = (e) => {
 
         e.preventDefault()
@@ -76,7 +80,7 @@ function SignUp() {
     
                             <div className='text-center d-flex justify-content-center' >
                                 <div>
-                                    <Button variant="primary" type="submit">
+                                    <Button variant="primary" type="submit" onClick={() => { handleSignUp() }}>
                                         SignUp
                                     </Button>
                                 </div>

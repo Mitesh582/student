@@ -10,7 +10,7 @@ function Header() {
     const dispatch = useDispatch()
 
     const handleLogOut = () => {
-        dispatch(logOut)
+        dispatch(logOut())
     }
 
     return (

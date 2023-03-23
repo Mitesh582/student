@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Google } from 'react-bootstrap-icons'
-import { logInGoogle } from '../../service/action/Auth.action'
+import { logInGoogle, logInInitiate } from '../../service/action/Auth.action'
 import './LogIn.css'
 
 function SignUp() {
@@ -23,6 +23,10 @@ function SignUp() {
         navigate('/')
     }
 
+    const handleLogin = () => {
+        dispatch(logInInitiate())
+    }
+
     const googleLogin = () => {
         dispatch(logInGoogle())
     }
@@ -35,7 +39,9 @@ function SignUp() {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault(initial.email, initial.password)
+        e.preventDefault();
+        // console.log(initial);
+        dispatch(logInInitiate(initial.email, initial.password));
     }
 
     if (user !== null) {
@@ -72,7 +78,7 @@ function SignUp() {
 
                             <div className='text-center d-flex justify-content-center' >
                                 <div>
-                                    <Button variant="primary" type="submit">
+                                    <Button variant="primary" type="submit" onClick={() => { handleLogin() }}>
                                         LogIn
                                     </Button>
                                 </div>

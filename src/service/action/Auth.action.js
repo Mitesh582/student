@@ -80,6 +80,7 @@ export const signUpInitiate = (email, password) => {
 }
 
 export const logInInitiate = (email, password) => {
+    // console.log(email, password);
     return dispatch => {
         signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
             console.log("userCredential", userCredential);
