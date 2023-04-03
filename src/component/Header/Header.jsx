@@ -20,7 +20,7 @@ function Header() {
                     <div className='row align-item-center'>
                         <div className='logo col-2 text-white'>
                             <h2 className='m-0'>
-                                UserCrud
+                                StudentCrud
                             </h2>
                         </div>
                         <nav className='col'>
@@ -32,12 +32,12 @@ function Header() {
                                 </li>
                                 <li className='p-2 '>
                                     <NavLink to='/about' className='text-decoration-none text-white'>
-                                        Aboute
+                                        About
                                     </NavLink>
                                 </li>
                                 <li className='p-2'>
-                                    <NavLink to='/createEmp' className='text-decoration-none text-white'>
-                                        Create Emp
+                                    <NavLink to='/createStu' className='text-decoration-none text-white'>
+                                        Create Stu
                                     </NavLink>
                                 </li>
                                 <li className='p-2'>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { creatStudentAsync } from '../../service/action/StudentList.ation'
+import { CreateStu, creatStudentAsync } from '../../service/action/StudentList.ation'
 import { useDispatch, useSelector } from 'react-redux'
 import './CreatStu.css'
 
@@ -33,7 +33,7 @@ function Student(props) {
         const lastId = studentList.length > 0 ? studentList[studentList.length - 1].id - 0 : 0;
 
         const data = {...initial, id : lastId + 1}
-        dispatch(creatStudentAsync(data))
+        dispatch(CreateStu(data))
         setInitial({
             fname: '',
             lname: '',
@@ -47,7 +47,7 @@ function Student(props) {
 
     return (
         <>
-            <Container>
+            <Container className='p-5'>
                 <Row className='align-item-center'>
                     <Col className='col-6'>
                         <h2 style={{paddingInlineStart: "160px"}}>

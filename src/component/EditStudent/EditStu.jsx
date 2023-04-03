@@ -33,7 +33,7 @@ function EditStu({handleEdit},props) {
 
     return (
         <>
-            <Container>
+            <Container className='p-5'>
                 <Row className='align-item-center'>
                     <Col className='col-6'>
                         <h2 style={{paddingInlineStart: "160px"}}>
