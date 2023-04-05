@@ -13,7 +13,8 @@ const StudentReducer = (state = initialState, action) => {
         case GET_STUDENT:
             return {
                 ...state,
-                studentList: action.payload
+                studentList: action.payload,
+                isEdit: false
             }
             break;
 
