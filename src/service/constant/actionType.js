@@ -3,6 +3,7 @@ export const DELETE_STU = "DELETE_STUDENT"
 export const GET_INFO = "GET_STUDENT_INFO"
 export const UPDATE_STU = "UPDATE_STUDENT"
 export const LOADING = "LOADING"
+export const GET_STUDENT = "GET_STUDENT"
 
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
 export const SIGNUP_FAIL = "SIGNUP_FAIL"

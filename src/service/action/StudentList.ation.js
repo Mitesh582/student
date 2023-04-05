@@ -1,6 +1,6 @@
-import { CREAT_STU, DELETE_STU, GET_INFO, UPDATE_STU, LOADING } from "../constant/actionType";
+import { CREAT_STU, DELETE_STU, GET_INFO, UPDATE_STU, LOADING, GET_STUDENT } from "../constant/actionType";
 import { db } from '../../Firebase/Firebase'
-import { doc, setDoc, collection, addDoc } from "firebase/firestore";
+import { doc, setDoc, collection, addDoc, getDocs, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
 
 export const creatStudent = (data) => {
     return {
@@ -19,10 +19,9 @@ export const creatStudentAsync = (data) => {
     }
 }
 
-export const DeleteStudent = (id) => {
+export const DeleteStudent = () => {
     return {
-        type: DELETE_STU,
-        payload: id
+        type: DELETE_STU
     }
 }
 
@@ -36,10 +35,10 @@ export const DeleteStudentAsync = () => {
     }
 }
 
-export const GetInfo = (id) => {
+export const GetInfo = (data) => {
     return {
         type: GET_INFO,
-        payload: id
+        payload: data
     }
 }
 
@@ -53,10 +52,16 @@ export const GetInfoAsync = () => {
     }
 }
 
-export const UpdateStu = (data) => {
+export const GetStudent = (data) => {
     return {
-        type: UPDATE_STU,
-        payload: data
+        type : GET_STUDENT,
+        payload : data
+    }
+}
+
+export const UpdateStu = () => {
+    return {
+        type: UPDATE_STU
     }
 }
 
@@ -77,11 +82,11 @@ export const loading = () => {
 }
 
 export const CreateStu = (data) => {
-    
+
     return async dispatch => {
         await setDoc(doc(db, "students", `${data.id}`), data).then((res) => {
             console.log("Done", res);
-            dispatch(creatStudent(data))
+            dispatch(getStuds())
         }).catch((err) => {
             console.log("error", err);
         })
@@ -90,9 +95,61 @@ export const CreateStu = (data) => {
     // return async dispatch => {
     //     await addDoc(collection(db, "students"), data).then((res) => {
     //         console.log(res.id);
-    //         dispatch(creatStudent(data))
+    //         dispatch(getStuds())
     //     }).catch((err) => {
     //         console.log("error", err);
     //     })
     // }
+}
+
+export const getStuds = () => {
+
+    return async dispatch => {
+        await getDocs(collection(db, "students")).then((docSnap) => {
+            let newArr = [];
+            docSnap.forEach((doc) => {
+                newArr = [...newArr, doc.data()];
+            });
+            dispatch(GetStudent(newArr));
+        }).catch((err) => {
+            console.log("error", err);
+        })
+
+    }
+}
+
+export const getStud = (id) => {
+
+    return dispatch => {
+        getDoc(doc(db, "students", `${id}`)).then((res) => {
+            console.log(res.data());
+            dispatch(GetInfo(res.data()))
+        }).catch((err) => {
+            console.log("error", err);
+        })
+    }
+}
+
+export const UpdateStuinitiate = (data) => {
+
+    return dispatch => {
+        updateDoc(doc(db, "students", `${data.id}`), data).then((res) => {
+            console.log("Update", res);
+            dispatch(UpdateStu())
+        }).catch((err) => {
+            console.log("error", err);
+        })
+    }
+}
+
+export const DeleteStu = (id) => {
+
+    return dispatch => {
+        deleteDoc(doc(db, "students", `${id}`)).then(() => {
+            console.log("Delete Success");
+            dispatch(getStuds())
+        }).catch((err) => {
+            console.log("error", err);
+        })
+    }
 }
