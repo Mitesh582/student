@@ -19,10 +19,9 @@ const StudentReducer = (state = initialState, action) => {
             break;
 
         case DELETE_STU:
-            const DStu = state.studentList.filter((Stu) => Stu.id !== action.payload)
             return {
                 ...state,
-                studentList: DStu,
+                studentInfo: action.payload,
                 isLoading: false,
                 isEdit: false
             }
